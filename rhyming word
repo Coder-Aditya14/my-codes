@@ -1,0 +1,39 @@
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String a = sc.nextLine();
+        int n = sc.nextInt();
+        sc.nextLine();
+        String[] D = new String[n];
+        for(int i=0; i<n; i++){
+            D[i] = sc.nextLine();
+        }
+        System.out.println(rhyming(a,D,n));
+    }
+    public static String rhyming(String a, String[] D, int n){
+        String rhyming_word = "No word";
+        int max = 0;
+        for(int i=0; i<n; i++){
+            if(!a.equals(D[i])){
+                int common = commoncharAtend(a,D[i]);
+                if(common > max){
+                    max = common;
+                    rhyming_word = D[i];
+                }
+            }
+        }
+        return rhyming_word;
+    }
+    public static int commoncharAtend(String a, String D){
+        int commonchar = 0;
+        int i = a.length()-1;
+        int j = D.length()-1;
+        while(i>=0 && j>=0 && a.charAt(i)==D.charAt(j)){
+            commonchar++;
+            i--;
+            j--;
+        }    
+        return commonchar;
+    }
+}
